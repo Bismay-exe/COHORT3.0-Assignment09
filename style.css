@@ -24,7 +24,7 @@
 
 :root[data-theme="dark"] {
     --bg-color: #000000;
-    --bg-secondary-color: #1a1a1a;
+    --bg-secondary-color: #0c0c0c;
     --text-color: #f3f3f3;
     --text-muted: #8f8f8fb0;
     --secondary-color: #757575;
