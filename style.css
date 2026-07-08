@@ -1,0 +1,133 @@
+:root,
+[data-theme="light"] {
+    --bg-color: #f3f0e8;
+    --bg-secondary-color: #ffffff;
+    --text-color: #000000;
+    --text-muted: #8f8f8fb0;
+    --secondary-color: rgb(156, 156, 156);
+
+    --blur-bg-color: #ffffff40;
+
+    --hover-bg-color: #00000010;
+
+    --border-color: #0000002d;
+
+    --todo-bg: url('./assets/card-images/light/todo.png');
+    --planner-bg: url('./assets/card-images/light/planner.png');
+    --goals-bg: url('./assets/card-images/light/goal.png');
+    --timer-bg: url('./assets/card-images/light/timer.png');
+    --quotes-bg: url('./assets/card-images/light/qoute.png');
+}
+
+:root[data-theme="dark"] {
+    --bg-color: #000000;
+    --bg-secondary-color: #1a1a1a;
+    --text-color: #f3f3f3;
+    --text-muted: #8f8f8fb0;
+    --secondary-color: #757575;
+
+    --blur-bg-color: #0000003b;
+
+    --hover-bg-color: #ffffff0f;
+
+    --border-color: #2c2c2c;
+
+    --todo-bg: url('./assets/card-images/dark/todo.png');
+    --planner-bg: url('./assets/card-images/dark/planner.png');
+    --goals-bg: url('./assets/card-images/dark/goal.png');
+    --timer-bg: url('./assets/card-images/dark/timer.png');
+    --quotes-bg: url('./assets/card-images/dark/quote.png');
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+html,
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Inter", sans-serif;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p {
+    font-family: "Inter", sans-serif;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html,
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+#todo-card {
+    background-image: var(--todo-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+
+}
+
+#planner-card {
+    background-image: var(--planner-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+}
+
+#goals-card {
+    background-image: var(--goals-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+}
+
+#timer-card {
+    background-image: var(--timer-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+}
+
+#quotes-card {
+    background-image: var(--quotes-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+}
+
+.image-zoom {
+    background-size: 100%;
+}
+
+.image-zoom:hover {
+    background-size: 115%;
+}

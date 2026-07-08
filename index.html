@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productivity Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="./assets/logo.svg" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="h-full w-screen">
+    <section id="dashboard" class="relative w-full h-full md:h-[calc(100dvh-4px)] flex flex-col md:flex-row gap-6 p-3">
+        <video autoplay loop muted playsinline class="fixed top-0 left-0 w-screen h-screen object-cover z-0">
+            <source src="./assets/background-videos/sunset1.mp4" type="video/mp4" />
+        </video>
+        <div class="sticky md:relative top-4 md:flex-1 flex flex-col justify-between h-full pt-2 pb-4 pl-4">
+            <div
+                class="flex justify-between items-center w-full bg-(--bg-color) md:bg-transparent rounded-[20px] relative">
+                <div class="bg-(--bg-color) px-5 py-3 rounded-[20px] flex items-center gap-3 shadow-none md:shadow-lg">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <rect x="8" y="14" width="8" height="4" fill="black"></rect>
+                    </svg>
+                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight">Productivity
+                        Dashboard</span>
+                </div>
+
+                <div
+                    class="bg-transparent md:bg-(--blur-bg-color) backdrop-blur-sm px-1.5 py-1 rounded-full flex gap-0 md:gap-4 items-center z-999">
+                    <div id="theme-toggle"
+                        class="bg-transparent md:bg-(--bg-color) px-4 py-2 rounded-full flex items-center gap-3 shadow-none md:shadow-lg cursor-pointer">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <span class="hidden md:block text-lg font-bold pr-2">Light</span>
+                    </div>
+
+                    <a href="https://github.com/Bismay-exe/COHORT3.0-Assignment09" target="_blank"
+                        rel="noopener noreferrer"
+                        class="bg-(--bg-color) p-3 rounded-full shadow-none md:shadow-lg cursor-pointer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-between md:items-center gap-12 pt-12 md:pt-0 pb-12 md:pb-0">
+                <div class="text-(--bg-color) text-shadow-heavy">
+                    <p id="current-date" class="text-3xl font-bold mb-8 tracking-wide">
+                    </p>
+                    <h1 id="current-time"
+                        class="text-[clamp(3rem,2.17rem+4.17vw,6.5rem)] leading-[1.05] font-extrabold tracking-tight">
+                    </h1>
+                </div>
+                <div class="text-(--bg-color) text-shadow-heavy">
+                    <h2 id="weather-temp-cond"
+                        class="text-[clamp(1.875rem,1.5rem+1.875vw,3rem)] font-bold leading-[1.2] mb-6">
+                        Loading...
+                    </h2>
+                    <div class="text-[clamp(1.125rem,1.05rem+0.375vw,1.35rem)] font-medium leading-relaxed opacity-95">
+                        <p id="weather-heat"></p>
+                        <p id="weather-humidity"></p>
+                        <p id="weather-wind"></p>
+                    </div>
+                </div>
+                <div class="hidden md:block"></div>
+            </div>
+
+            <div class="flex items-center gap-4 bg-(--bg-color) p-1 pr-6 rounded-2xl w-max shadow-xl mb-4">
+                <div class="h-12 w-12 bg-zinc-800 rounded-2xl flex items-center justify-center">
+                    <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                        <path
+                            d="M15.9998 2.66699C10.1198 2.66699 5.33313 7.45366 5.33313 13.3337C5.29313 21.9203 14.8265 28.8003 15.2265 29.0937C15.4531 29.2537 15.7331 29.347 15.9998 29.347C16.2665 29.347 16.5465 29.267 16.7731 29.0937C17.1731 28.8003 26.7065 21.9337 26.6665 13.3337C26.6665 7.45366 21.8798 2.66699 15.9998 2.66699ZM15.9998 18.667C13.0531 18.667 10.6665 16.2803 10.6665 13.3337C10.6665 10.387 13.0531 8.00033 15.9998 8.00033C18.9465 8.00033 21.3331 10.387 21.3331 13.3337C21.3331 16.2803 18.9465 18.667 15.9998 18.667Z"
+                            fill="#E6431F" />
+                    </svg>
+                </div>
+                <span id="location-name" class="text-xl font-bold">Current Location</span>
+            </div>
+        </div>
+
+        <div
+            class="md:h-full shrink-0 bg-(--blur-bg-color) backdrop-blur-xl border border-(--border-color) rounded-[36px] shadow-[0_8px_32px_0_rgba(0,0,0,0.15)] grid grid-cols-2 md:grid-cols-1 gap-2 h-full p-3 overflow-y-scroll no-scrollbar">
+            <button id="todo-card"
+                class="image-zoom h-full md:min-h-[180px] aspect-square rounded-[2vh] p-4 flex flex-col relative overflow-hidden shadow-sm group">
+                <div class="flex justify-between items-start z-10">
+                    <span class="text-[1.1rem] font-bold text-start">Todo</span>
+                    <div class="h-7 px-2 bg-[#df4a2e] rounded-full flex items-center justify-center">
+                        <svg class="text-(--bg-color) group-hover:-rotate-45 rotate-0 transition-transform duration-300 ease-in-out"
+                            xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-width="2"
+                                d="M16 5c0 .742.733 1.85 1.475 2.78c.954 1.2 2.094 2.247 3.401 3.046C21.856 11.425 23.044 12 24 12m0 0c-.956 0-2.145.575-3.124 1.174c-1.307.8-2.447 1.847-3.401 3.045C16.733 17.15 16 18.26 16 19m8-7H0" />
+                        </svg>
+                    </div>
+                </div>
+            </button>
+
+            <button id="planner-card"
+                class="image-zoom h-full md:min-h-[180px] aspect-square rounded-[2vh] p-4 flex flex-col relative overflow-hidden shadow-sm group">
+                <div class="flex justify-between items-start z-10">
+                    <span class="text-[1.1rem] font-bold leading-tight text-start">Daily<br />Planner</span>
+                    <div class="h-7 px-2 bg-[#df4a2e] rounded-full flex items-center justify-center">
+                        <svg class="text-(--bg-color) group-hover:-rotate-45 rotate-0 transition-transform duration-300 ease-in-out"
+                            xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-width="2"
+                                d="M16 5c0 .742.733 1.85 1.475 2.78c.954 1.2 2.094 2.247 3.401 3.046C21.856 11.425 23.044 12 24 12m0 0c-.956 0-2.145.575-3.124 1.174c-1.307.8-2.447 1.847-3.401 3.045C16.733 17.15 16 18.26 16 19m8-7H0" />
+                        </svg>
+                    </div>
+                </div>
+            </button>
+
+            <button id="goals-card"
+                class="image-zoom h-full md:min-h-[180px] aspect-square rounded-[2vh] p-4 flex flex-col relative overflow-hidden shadow-sm group">
+                <div class="flex justify-between items-start z-10">
+                    <span class="text-[1.1rem] font-bold leading-tight text-start">Daily Goals</span>
+                    <div class="h-7 px-2 bg-[#df4a2e] rounded-full flex items-center justify-center">
+                        <svg class="text-(--bg-color) group-hover:-rotate-45 rotate-0 transition-transform duration-300 ease-in-out"
+                            xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-width="2"
+                                d="M16 5c0 .742.733 1.85 1.475 2.78c.954 1.2 2.094 2.247 3.401 3.046C21.856 11.425 23.044 12 24 12m0 0c-.956 0-2.145.575-3.124 1.174c-1.307.8-2.447 1.847-3.401 3.045C16.733 17.15 16 18.26 16 19m8-7H0" />
+                        </svg>
+                    </div>
+                </div>
+            </button>
+
+            <button id="timer-card"
+                class="image-zoom h-full md:min-h-[180px] aspect-square rounded-[2vh] p-4 flex flex-col relative overflow-hidden shadow-sm group">
+                <div class="flex justify-between items-start z-10">
+                    <span class="text-[1.1rem] font-bold leading-tight text-start">Pomodoro Timer</span>
+                    <div class="h-7 px-2 bg-[#df4a2e] rounded-full flex items-center justify-center">
+                        <svg class="text-(--bg-color) group-hover:-rotate-45 rotate-0 transition-transform duration-300 ease-in-out"
+                            xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-width="2"
+                                d="M16 5c0 .742.733 1.85 1.475 2.78c.954 1.2 2.094 2.247 3.401 3.046C21.856 11.425 23.044 12 24 12m0 0c-.956 0-2.145.575-3.124 1.174c-1.307.8-2.447 1.847-3.401 3.045C16.733 17.15 16 18.26 16 19m8-7H0" />
+                        </svg>
+                    </div>
+                </div>
+            </button>
+
+            <button id="quotes-card"
+                class="image-zoom col-span-2 md:col-span-1 3xl:col-span-2 h-full md:min-h-[180px] aspect-square rounded-[2vh] p-4 flex flex-col relative overflow-hidden shadow-sm group">
+                <div class="flex justify-between items-start z-10">
+                    <span class="text-[1.1rem] font-bold leading-tight text-start">Motivation Quotes</span>
+                    <div class="h-7 px-2 bg-[#df4a2e] rounded-full flex items-center justify-center">
+                        <svg class="text-(--bg-color) group-hover:-rotate-45 rotate-0 transition-transform duration-300 ease-in-out"
+                            xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-width="2"
+                                d="M16 5c0 .742.733 1.85 1.475 2.78c.954 1.2 2.094 2.247 3.401 3.046C21.856 11.425 23.044 12 24 12m0 0c-.956 0-2.145.575-3.124 1.174c-1.307.8-2.447 1.847-3.401 3.045C16.733 17.15 16 18.26 16 19m8-7H0" />
+                        </svg>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <section id="todo-list" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
+        <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
+            <div
+                class="w-full bg-(--bg-secondary-color) border border-(--border-color) rounded-3xl flex justify-between items-center p-4 md:p-8">
+                <h1 class="text-center text-2xl font-bold">
+                    Your Personalised task List
+                </h1>
+                <button id="close-todo" class="p-2 bg-gray-500 rounded-lg text-white">
+                    X
+                </button>
+            </div>
+        </header>
+
+        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col md:flex-row gap-4">
+            <div class="md:sticky top-0 pt-4 pb-4 px-4 md:pt-0 md:pb-8 md:px-8 md:max-w-[500px] mx-auto w-full h-full">
+                <div
+                    class="md:max-w-[500px] mx-auto w-full h-full bg-(--bg-secondary-color) rounded-2xl border border-(--border-color) p-4">
+                    <h3 class="text-[1.8rem] font-bold leading-tight text-start pb-6">
+                        Add tasks
+                    </h3>
+                    <form action="" class="flex flex-col gap-6">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-[1.1rem] font-semibold leading-tight text-start">Task Title</label>
+                            <input type="text" id="todo-title"
+                                class="w-full h-12 bg-(--bg-color) rounded-lg p-4 border border-(--border-color) font-semibold text-(--text-color)"
+                                placeholder="Add a title" />
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-[1.1rem] font-semibold leading-tight text-start">Task Description</label>
+                            <textarea id="todo-desc"
+                                class="w-full h-full min-h-40 bg-(--bg-color) rounded-lg p-4 border border-(--border-color) font-medium text-(--secondary-color)"
+                                placeholder="Add description"></textarea>
+                        </div>
+                        <label class="flex items-center gap-3 text-slate-800 font-medium cursor-pointer">
+                            <input type="checkbox" id="todo-important"
+                                class="w-full h-5 rounded-md border border-slate-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500/20 accent-indigo-600 transition-all cursor-pointer" />
+                            <span class="text-(--text-color)">Mark as Important</span>
+                        </label>
+
+                        <button id="add-todo-btn"
+                            class="bg-(--text-color) text-(--bg-color) font-semibold py-2 px-4 rounded-xl h-12 cursor-pointer"
+                            type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="w-full h-full flex flex-col pb-4 md:pb-8">
+                <div class="header flex justify-between items-center gap-3 pl-4 md:pl-0 pr-4 md:pr-8 py-2">
+                    <h1 class="font-extrabold text-4xl">All Tasks</h1>
+                    <button id="clearall-btn" class="btn red-btn">
+                        <i class="ri-delete-bin-6-line"></i> Clear All
+                    </button>
+                </div>
+                <div class="flex justify-between items-center gap-3 pl-4 md:pl-0 pr-4 md:pr-8 py-2">
+                    <div class="counters flex gap-3">
+                        <h4 class="text-(--text-muted)">
+                            Total:
+                            <span id="total-count" class="text-(--text-color) font-bold">0</span>
+                        </h4>
+                        <h4 class="text-(--text-muted)">
+                            Completed:
+                            <span id="completed-count" class="text-(--text-color) font-bold">0</span>
+                        </h4>
+                        <h4 class="text-(--text-muted)">
+                            Pending:
+                            <span id="pending-count" class="text-(--text-color) font-bold">0</span>
+                        </h4>
+                    </div>
+                </div>
+                <div
+                    class="w-full flex flex-nowrap overflow-x-scroll no-scrollbar gap-3 pl-4 md:pl-0 pr-4 md:pr-8 py-3">
+                    <button id="filter-all"
+                        class="bg-(--text-color) text-(--bg-color) hover:text-(--bg-secondary-color) px-4 py-1.5 font-semibold rounded-full transition-all duration-300 ease whitespace-nowrap cursor-pointer">
+                        All Task
+                    </button>
+                    <button id="filter-pending"
+                        class="bg-(--bg-secondary-color) hover:bg-(--hover-bg-color) text-(--text-muted) hover:text-(--text-color) px-4 py-1.5 font-semibold rounded-full transition-all duration-300 ease whitespace-nowrap cursor-pointer">
+                        Pending Tasks
+                    </button>
+                    <button id="filter-completed"
+                        class="bg-(--bg-secondary-color) hover:bg-(--hover-bg-color) text-(--text-muted) hover:text-(--text-color) px-4 py-1.5 font-semibold rounded-full transition-all duration-300 ease whitespace-nowrap cursor-pointer">
+                        Completed Tasks
+                    </button>
+                    <button id="filter-important"
+                        class="bg-(--bg-secondary-color) hover:bg-(--hover-bg-color) text-(--text-muted) hover:text-(--text-color) px-4 py-1.5 font-semibold rounded-full transition-all duration-300 ease whitespace-nowrap cursor-pointer">
+                        Important Tasks
+                    </button>
+                </div>
+
+                <div id="task-cards-container" class="w-full h-full flex flex-col gap-2 pl-4 md:pl-0 pr-4 md:pr-8 pt-2">
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <section id="planner-section" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
+        <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
+            <div
+                class="w-full bg-(--bg-secondary-color) border border-(--border-color) rounded-3xl flex justify-between items-center p-4 md:p-8">
+                <h1 class="text-center text-2xl font-bold">Daily Planner</h1>
+                <button id="close-planner" class="p-2 bg-gray-500 rounded-lg text-white">
+                    X
+                </button>
+            </div>
+        </header>
+        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col p-4 md:p-8">
+            <div id="planner-container" class="flex flex-col gap-4 max-w-3xl mx-auto w-full"></div>
+        </main>
+    </section>
+
+    <section id="goals-section" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
+        <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
+            <div
+                class="w-full bg-(--bg-secondary-color) border border-(--border-color) rounded-3xl flex justify-between items-center p-4 md:p-8">
+                <h1 class="text-center text-2xl font-bold">Daily Goals</h1>
+                <button id="close-goals" class="p-2 bg-gray-500 rounded-lg text-white">
+                    X
+                </button>
+            </div>
+        </header>
+        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col md:flex-row gap-8 p-4 md:p-8">
+            <div class="w-full md:w-1/3 bg-(--bg-secondary-color) rounded-2xl border border-(--border-color) p-6 h-max">
+                <h3 class="text-[1.8rem] font-bold leading-tight text-start pb-6">
+                    Add Goal
+                </h3>
+                <input type="text" id="goal-input"
+                    class="w-full h-12 bg-(--bg-color) rounded-lg p-4 border border-(--border-color) font-semibold text-(--text-color) mb-4"
+                    placeholder="New Goal" />
+                <button id="add-goal-btn"
+                    class="w-full bg-(--text-color) text-(--bg-color) font-semibold py-2 px-4 rounded-xl h-12 cursor-pointer">
+                    Add Goal
+                </button>
+            </div>
+            <div class="w-full md:w-2/3">
+                <h2 class="text-2xl font-bold mb-4">
+                    Progress: <span id="goal-progress">0/0</span>
+                </h2>
+                <div id="goals-container" class="flex flex-col gap-2">
+
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <section id="timer-section" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
+        <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
+            <div
+                class="w-full bg-(--bg-secondary-color) border border-(--border-color) rounded-3xl flex justify-between items-center p-4 md:p-8">
+                <h1 class="text-center text-2xl font-bold">Pomodoro Timer</h1>
+                <button id="close-timer" class="p-2 bg-gray-500 rounded-lg text-white">
+                    X
+                </button>
+            </div>
+        </header>
+        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col items-center justify-center p-4 md:p-8">
+            <h2 id="timer-label" class="text-3xl font-bold mb-4">Work Session</h2>
+            <div class="text-[8rem] font-bold mb-8" id="timer-display">25:00</div>
+            <div class="flex gap-4">
+                <button id="timer-start"
+                    class="bg-green-500 text-white font-semibold py-3 px-8 rounded-xl text-xl cursor-pointer">
+                    Start
+                </button>
+                <button id="timer-pause"
+                    class="bg-yellow-500 text-white font-semibold py-3 px-8 rounded-xl text-xl cursor-pointer">
+                    Pause
+                </button>
+                <button id="timer-reset"
+                    class="bg-red-500 text-white font-semibold py-3 px-8 rounded-xl text-xl cursor-pointer">
+                    Reset
+                </button>
+            </div>
+        </main>
+    </section>
+
+    <section id="quotes-section" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
+        <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
+            <div
+                class="w-full bg-(--bg-secondary-color) border border-(--border-color) rounded-3xl flex justify-between items-center p-4 md:p-8">
+                <h1 class="text-center text-2xl font-bold">Motivation Quotes</h1>
+                <button id="close-quotes" class="p-2 bg-gray-500 rounded-lg text-white">
+                    X
+                </button>
+            </div>
+        </header>
+        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col items-center justify-center p-4 md:p-8">
+            <div
+                class="max-w-3xl text-center bg-(--bg-secondary-color) p-12 rounded-3xl border border-(--border-color)">
+                <p id="quote-text" class="text-4xl font-bold mb-6 italic">
+                    "Loading quote..."
+                </p>
+                <p id="quote-author" class="text-2xl text-(--text-muted) mb-8"></p>
+                <button id="new-quote-btn"
+                    class="bg-(--text-color) text-(--bg-color) font-semibold py-3 px-8 rounded-xl text-xl mt-4 cursor-pointer">
+                    New Quote
+                </button>
+            </div>
+        </main>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

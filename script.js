@@ -1,0 +1,383 @@
+const dashboard = document.querySelector('#dashboard');
+const todoSection = document.querySelector('#todo-list');
+const plannerSection = document.querySelector('#planner-section');
+const goalsSection = document.querySelector('#goals-section');
+const timerSection = document.querySelector('#timer-section');
+const quotesSection = document.querySelector('#quotes-section');
+
+document.querySelector('#todo-card').addEventListener('click', () => {
+    dashboard.classList.add('hidden');
+    todoSection.classList.remove('hidden');
+});
+document.querySelector('#close-todo').addEventListener('click', () => {
+    todoSection.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+});
+
+document.querySelector('#planner-card').addEventListener('click', () => {
+    dashboard.classList.add('hidden');
+    plannerSection.classList.remove('hidden');
+});
+document.querySelector('#close-planner').addEventListener('click', () => {
+    plannerSection.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+});
+
+document.querySelector('#goals-card').addEventListener('click', () => {
+    dashboard.classList.add('hidden');
+    goalsSection.classList.remove('hidden');
+});
+document.querySelector('#close-goals').addEventListener('click', () => {
+    goalsSection.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+});
+
+document.querySelector('#timer-card').addEventListener('click', () => {
+    dashboard.classList.add('hidden');
+    timerSection.classList.remove('hidden');
+});
+document.querySelector('#close-timer').addEventListener('click', () => {
+    timerSection.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+});
+
+document.querySelector('#quotes-card').addEventListener('click', () => {
+    dashboard.classList.add('hidden');
+    quotesSection.classList.remove('hidden');
+    fetchQuote();
+});
+document.querySelector('#close-quotes').addEventListener('click', () => {
+    quotesSection.classList.add('hidden');
+    dashboard.classList.remove('hidden');
+});
+
+const themeToggle = document.querySelector('#theme-toggle');
+let currentTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+themeToggle.addEventListener('click', () => {
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+});
+
+function updateTime() {
+    let now = new Date();
+    
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    const dateStr = `${now.getDate()} ${months[now.getMonth()]}, ${now.getFullYear()}`;
+    document.querySelector('#current-date').textContent = dateStr;
+    
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+    
+    if (hours > 12) hours -= 12;
+    if (hours === 0) hours = 12;
+    
+    const minsStr = String(minutes).padStart(2, '0');
+    const secsStr = String(seconds).padStart(2, '0');
+    
+    document.querySelector('#current-time').innerHTML = `${days[now.getDay()]},<br/>${hours}:${minsStr}:${secsStr} ${ampm}`;
+}
+setInterval(updateTime, 1000);
+updateTime();
+
+const apiKey = "347c1757e128ff7f3d023d627b9c20f6";
+
+async function fetchWeather() {
+    const loc = document.querySelector('#location-name');
+    const tempCond = document.querySelector('#weather-temp-cond');
+    const humidityEl = document.querySelector('#weather-humidity');
+    const windEl = document.querySelector('#weather-wind');
+    const heatEl = document.querySelector('#weather-heat');
+
+    loc.textContent = "Loading...";
+    tempCond.innerHTML = "Loading...";
+    humidityEl.textContent = "";
+    windEl.textContent = "";
+    heatEl.textContent = "";
+
+    if (!navigator.geolocation) {
+        loc.textContent = "Geolocation not supported";
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.message);
+                
+                loc.textContent = data.name;
+                tempCond.innerHTML = `${Math.round(data.main.temp)}°C<br/>${data.weather[0].description}`;
+                humidityEl.textContent = `Humidity: ${data.main.humidity}%`;
+                windEl.textContent = `Wind: ${data.wind.speed}km/h`;
+                heatEl.textContent = `Feels like: ${Math.round(data.main.feels_like)}°C`;
+            } catch (error) {
+                loc.textContent = "Weather unavailable";
+                tempCond.innerHTML = "";
+            }
+        },
+        (error) => {
+            loc.textContent = "Location access denied";
+            tempCond.innerHTML = "";
+        }
+    );
+}
+fetchWeather();
+
+async function fetchQuote() {
+    const quoteText = document.querySelector('#quote-text');
+    const quoteAuthor = document.querySelector('#quote-author');
+    
+    quoteText.textContent = 'Loading quote...';
+    quoteAuthor.textContent = '';
+    
+    try {
+        const response = await fetch('https://dummyjson.com/quotes/random');
+        const data = await response.json();
+        quoteText.textContent = `"${data.quote}"`;
+        quoteAuthor.textContent = `- ${data.author}`;
+    } catch (error) {
+        quoteText.textContent = 'Failed to load quote.';
+    }
+}
+document.querySelector('#new-quote-btn').addEventListener('click', fetchQuote);
+
+let timerInterval;
+let timeLeft = 25 * 60;
+let isTimerRunning = false;
+const timerDisplay = document.querySelector('#timer-display');
+
+function updateTimerDisplay() {
+    let m = Math.floor(timeLeft / 60);
+    let s = timeLeft % 60;
+    timerDisplay.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+document.querySelector('#timer-start').addEventListener('click', () => {
+    if (!isTimerRunning) {
+        isTimerRunning = true;
+        timerInterval = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateTimerDisplay();
+            } else {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                alert('Time is up!');
+            }
+        }, 1000);
+    }
+});
+
+document.querySelector('#timer-pause').addEventListener('click', () => {
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+});
+
+document.querySelector('#timer-reset').addEventListener('click', () => {
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+    timeLeft = 25 * 60;
+    updateTimerDisplay();
+});
+
+let goals = JSON.parse(localStorage.getItem('goals')) || [];
+const goalsContainer = document.querySelector('#goals-container');
+const goalProgress = document.querySelector('#goal-progress');
+
+function renderGoals() {
+    goalsContainer.innerHTML = "";
+    let completedCount = 0;
+    
+    goals.forEach((goal, idx) => {
+        if (goal.done) completedCount++;
+        let textStyle = goal.done ? "text-decoration: line-through; color: gray;" : "";
+        let checkedAttr = goal.done ? "checked" : "";
+        
+        goalsContainer.innerHTML += `
+            <div class='bg-(--bg-secondary-color) rounded-xl border border-(--border-color) p-4 flex gap-3 items-center'>
+                <input type='checkbox' class='w-5 h-5 cursor-pointer goal-check-btn' data-index="${idx}" ${checkedAttr} />
+                <span class='text-xl flex-1 font-semibold' style='${textStyle}'>${goal.text}</span>
+                <button class='bg-red-500 text-white w-8 h-8 rounded-lg cursor-pointer goal-del-btn' data-index="${idx}">X</button>
+            </div>
+        `;
+    });
+    
+    goalProgress.textContent = `${completedCount}/${goals.length}`;
+}
+
+goalsContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('goal-check-btn')) {
+        let idx = e.target.dataset.index;
+        goals[idx].done = !goals[idx].done;
+        localStorage.setItem('goals', JSON.stringify(goals));
+        renderGoals();
+    }
+    if (e.target.classList.contains('goal-del-btn')) {
+        let idx = e.target.dataset.index;
+        goals.splice(idx, 1);
+        localStorage.setItem('goals', JSON.stringify(goals));
+        renderGoals();
+    }
+});
+
+document.querySelector('#add-goal-btn').addEventListener('click', () => {
+    const goalInput = document.querySelector('#goal-input');
+    if (goalInput.value.trim() !== '') {
+        goals.push({ text: goalInput.value, done: false });
+        localStorage.setItem('goals', JSON.stringify(goals));
+        goalInput.value = '';
+        renderGoals();
+    }
+});
+renderGoals();
+
+let plannerSlots = JSON.parse(localStorage.getItem('planner')) || [];
+if (plannerSlots.length === 0) {
+    for (let i = 6; i <= 22; i++) {
+        let h = i > 12 ? i - 12 : i;
+        if (h === 0) h = 12;
+        let ampm = i >= 12 ? 'PM' : 'AM';
+        plannerSlots.push({ time: `${h}:00 ${ampm}`, text: '' });
+    }
+}
+
+const plannerContainer = document.querySelector('#planner-container');
+
+function renderPlanner() {
+    plannerContainer.innerHTML = '';
+    plannerSlots.forEach((slot, idx) => {
+        plannerContainer.innerHTML += `
+            <div class='flex gap-4 items-center bg-(--bg-secondary-color) rounded-xl border border-(--border-color) p-4'>
+                <div class='w-24 font-bold text-lg'>${slot.time}</div>
+                <input type='text' data-index="${idx}" class='planner-input flex-1 bg-(--bg-color) border border-(--border-color) rounded-lg p-3 text-(--text-color)' value='${slot.text}' placeholder='Plan something...' />
+            </div>
+        `;
+    });
+}
+
+plannerContainer.addEventListener('change', (e) => {
+    if (e.target.classList.contains('planner-input')) {
+        let idx = e.target.dataset.index;
+        plannerSlots[idx].text = e.target.value;
+        localStorage.setItem('planner', JSON.stringify(plannerSlots));
+    }
+});
+renderPlanner();
+
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
+let currentFilter = 'all';
+const taskContainer = document.querySelector('#task-cards-container');
+
+function renderTodos() {
+    taskContainer.innerHTML = '';
+    
+    let completed = 0;
+    const filterBtns = {
+        'all': document.querySelector('#filter-all'),
+        'pending': document.querySelector('#filter-pending'),
+        'completed': document.querySelector('#filter-completed'),
+        'important': document.querySelector('#filter-important')
+    };
+    
+    const defaultClass = "bg-(--bg-secondary-color) hover:bg-(--hover-bg-color) text-(--text-muted) hover:text-(--text-color) px-4 py-1.5 font-semibold rounded-full cursor-pointer transition-all duration-300 ease whitespace-nowrap";
+    const activeClass = "bg-(--text-color) text-(--bg-color) hover:text-(--bg-secondary-color) px-4 py-1.5 font-semibold rounded-full cursor-pointer transition-all duration-300 ease whitespace-nowrap";
+    
+    for (let key in filterBtns) {
+        filterBtns[key].className = key === currentFilter ? activeClass : defaultClass;
+    }
+
+    todos.forEach((t, i) => {
+        if (t.done) completed++;
+        
+        if (currentFilter === 'pending' && t.done) return;
+        if (currentFilter === 'completed' && !t.done) return;
+        if (currentFilter === 'important' && !t.important) return;
+        
+        let textStyle = t.done ? "text-decoration: line-through; color: gray;" : "";
+        let checkedAttr = t.done ? "checked" : "";
+        let titleText = t.important ? `⭐ ${t.title}` : t.title;
+        let descHtml = t.desc !== '' ? `<p class='text-(--text-muted) font-medium mt-1'>${t.desc}</p>` : "";
+        
+        taskContainer.innerHTML += `
+            <div class='w-full shrink-0 bg-(--bg-secondary-color) rounded-2xl border border-(--border-color) p-4 flex gap-3'>
+                <div class='w-6 flex justify-center items-center mt-1'>
+                    <input type='checkbox' class='w-5 h-5 cursor-pointer todo-check-btn' data-index="${i}" ${checkedAttr} />
+                </div>
+                <div class='w-full h-full'>
+                    <h3 class='text-(--text-color) font-bold text-xl' style='${textStyle}'>${titleText}</h3>
+                    ${descHtml}
+                </div>
+                <div class='flex flex-col gap-2'>
+                    <button class='w-7 h-7 rounded bg-red-500 text-white flex justify-center items-center font-bold cursor-pointer todo-del-btn' data-index="${i}">X</button>
+                </div>
+            </div>
+        `;
+    });
+    
+    document.querySelector('#total-count').textContent = todos.length;
+    document.querySelector('#completed-count').textContent = completed;
+    document.querySelector('#pending-count').textContent = todos.length - completed;
+}
+
+taskContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('todo-check-btn')) {
+        let idx = e.target.dataset.index;
+        todos[idx].done = !todos[idx].done;
+        localStorage.setItem('todos', JSON.stringify(todos));
+        renderTodos();
+    }
+    if (e.target.classList.contains('todo-del-btn')) {
+        let idx = e.target.dataset.index;
+        todos.splice(idx, 1);
+        localStorage.setItem('todos', JSON.stringify(todos));
+        renderTodos();
+    }
+});
+
+document.querySelector('#add-todo-btn').addEventListener('click', (e) => {
+    e.preventDefault();
+    const titleInp = document.querySelector('#todo-title');
+    const descInp = document.querySelector('#todo-desc');
+    const impInp = document.querySelector('#todo-important');
+    
+    if (titleInp.value.trim() !== '') {
+        todos.push({
+            title: titleInp.value,
+            desc: descInp.value,
+            important: impInp.checked,
+            done: false
+        });
+        localStorage.setItem('todos', JSON.stringify(todos));
+        titleInp.value = '';
+        descInp.value = '';
+        impInp.checked = false;
+        renderTodos();
+    }
+});
+
+document.querySelector('#clearall-btn').addEventListener('click', () => {
+    todos = [];
+    localStorage.setItem('todos', JSON.stringify(todos));
+    renderTodos();
+});
+
+document.querySelector('#filter-all').addEventListener('click', () => { currentFilter = 'all'; renderTodos(); });
+document.querySelector('#filter-pending').addEventListener('click', () => { currentFilter = 'pending'; renderTodos(); });
+document.querySelector('#filter-completed').addEventListener('click', () => { currentFilter = 'completed'; renderTodos(); });
+document.querySelector('#filter-important').addEventListener('click', () => { currentFilter = 'important'; renderTodos(); });
+
+renderTodos();
