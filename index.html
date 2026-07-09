@@ -18,14 +18,12 @@
 </head>
 
 <body class="h-full w-screen">
-    <section id="dashboard" class="relative w-full h-full md:h-[calc(100dvh-4px)] flex flex-col md:flex-row gap-6 p-3">
-        <video autoplay loop muted playsinline class="fixed top-0 left-0 w-screen h-screen object-cover z-0">
-            <source src="./assets/background-videos/night.mp4" type="video/mp4" />
-        </video>
-        <div class="sticky md:relative top-4 md:flex-1 flex flex-col justify-between h-full pt-2 pb-4 pl-4">
+    <section id="dashboard" class="relative w-full h-full md:h-[calc(100dvh-4px)] bg-(--text-color) flex flex-col md:flex-row gap-6 p-3">
+        <video id="bg-video" autoplay loop muted playsinline class="fixed top-0 left-0 w-screen h-screen object-cover z-0"></video>
+        <div class="sticky md:relative top-4 md:flex-1 flex flex-col justify-between h-full pt-2 pb-4 pl-3 md:pl-4 pr-3 md:pr-0">
             <div class="flex justify-between items-center bg-(--bg-color) md:bg-transparent rounded-[20px] relative">
                 <div
-                    class="bg-(--bg-color) box-shadow-md px-5 py-3 rounded-[20px] flex items-center gap-3 shadow-none md:shadow-lg">
+                    class="bg-(--bg-color) box-shadow-md px-5 py-3 rounded-[16px] flex items-center gap-3 shadow-none md:shadow-lg">
                     <svg class="text-(--text-color)" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -35,44 +33,40 @@
                             d="M19 4h-1v3a1 1 0 0 1-2 0V4H8v3a1 1 0 0 1-2 0V4H5a3 3 0 0 0-3 3v3h20V7a3 3 0 0 0-3-3" />
                     </svg>
 
-                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">Productivity <br
-                            class="md:hidden" />Dashboard</span>
+                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight">Productivity <br class="md:hidden" />Dashboard</span>
                 </div>
 
-                <div
-                    class="bg-transparent md:bg-(--blur-bg-color)s box-shadow-md backdrop-blur-sm px-1.5 py-1 rounded-full flex gap-0 md:gap-4 items-center z-999">
-                    <a href="https://github.com/Bismay-exe/COHORT3.0-Assignment09" target="_blank"
-                        rel="noopener noreferrer"
-                        class="flex justify-center items-center gap-2 bg-(--bg-color) px-4 py-2 rounded-full shadow-none md:shadow-lg cursor-pointer">
-                        <svg class="text-(--text-color)" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                            viewBox="0 0 24 24">
-                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2">
-                                <path stroke-dasharray="32"
-                                    d="M12 4c1.67 0 2.61 0.4 3 0.5c0.53 -0.43 1.94 -1.5 3.5 -1.5c0.34 1 0.29 2.22 0 3c0.75 1 1 2 1 3.5c0 2.19 -0.48 3.58 -1.5 4.5c-1.02 0.92 -2.11 1.37 -3.5 1.5c0.65 0.54 0.5 1.87 0.5 2.5c0 0.73 0 3 0 3M12 4c-1.67 0 -2.61 0.4 -3 0.5c-0.53 -0.43 -1.94 -1.5 -3.5 -1.5c-0.34 1 -0.29 2.22 0 3c-0.75 1 -1 2 -1 3.5c0 2.19 0.48 3.58 1.5 4.5c1.02 0.92 2.11 1.37 3.5 1.5c-0.65 0.54 -0.5 1.87 -0.5 2.5c0 0.73 0 3 0 3">
-                                    <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="32;0" />
-                                </path>
-                                <path stroke-dasharray="10" stroke-dashoffset="10"
-                                    d="M9 19c-1.41 0 -2.84 -0.56 -3.69 -1.19c-0.84 -0.63 -1.09 -1.66 -2.31 -2.31">
-                                    <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s"
-                                        to="0" />
-                                </path>
-                            </g>
-                        </svg>
-                        <span class="hidden md:block text-lg font-bold pr-2">Github</span>
-                    </a>
-                </div>
+                <a href="https://github.com/Bismay-exe/COHORT3.0-Assignment09" target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex justify-center items-center gap-2 bg-(--bg-color) h-14 px-6 py-2 rounded-[16px] box-shadow-md z-99 cursor-pointer">
+                    <svg class="text-(--text-color)" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                        viewBox="0 0 24 24">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path stroke-dasharray="32"
+                                d="M12 4c1.67 0 2.61 0.4 3 0.5c0.53 -0.43 1.94 -1.5 3.5 -1.5c0.34 1 0.29 2.22 0 3c0.75 1 1 2 1 3.5c0 2.19 -0.48 3.58 -1.5 4.5c-1.02 0.92 -2.11 1.37 -3.5 1.5c0.65 0.54 0.5 1.87 0.5 2.5c0 0.73 0 3 0 3M12 4c-1.67 0 -2.61 0.4 -3 0.5c-0.53 -0.43 -1.94 -1.5 -3.5 -1.5c-0.34 1 -0.29 2.22 0 3c-0.75 1 -1 2 -1 3.5c0 2.19 0.48 3.58 1.5 4.5c1.02 0.92 2.11 1.37 3.5 1.5c-0.65 0.54 -0.5 1.87 -0.5 2.5c0 0.73 0 3 0 3">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="32;0" />
+                            </path>
+                            <path stroke-dasharray="10" stroke-dashoffset="10"
+                                d="M9 19c-1.41 0 -2.84 -0.56 -3.69 -1.19c-0.84 -0.63 -1.09 -1.66 -2.31 -2.31">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s"
+                                    to="0" />
+                            </path>
+                        </g>
+                    </svg>
+                    <span class="hidden md:block text-lg font-bold pr-2">Github</span>
+                </a>
             </div>
 
             <div class="flex flex-wrap justify-between md:items-center gap-12 pt-12 md:pt-0 pb-12 md:pb-0">
-                <div class="text-(--bg-color) text-shadow-heavy">
+                <div class="text-(--bg-color)">
                     <p id="current-date" class="text-3xl font-bold mb-8 tracking-wide text-shadow-sm">
                     </p>
                     <h1 id="current-time"
                         class="text-[clamp(3rem,2.17rem+4.17vw,6.5rem)] leading-[1.05] font-extrabold tracking-tight text-shadow-lg">
                     </h1>
                 </div>
-                <div class="text-(--bg-color) text-shadow-heavy">
+                <div class="text-(--bg-color)">
                     <h2 id="weather-temp-cond"
                         class="text-[clamp(1.875rem,1.5rem+1.875vw,3rem)] font-bold leading-[1.2] mb-6 text-shadow-sm">
                         Loading...
@@ -177,24 +171,19 @@
 
     <section id="todo-list" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
         <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
-            <div class="flex justify-between items-center bg-(--bg-color) md:bg-transparent rounded-[20px] relative">
+            <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
-                    class="bg-(--bg-secondary-color) box-shadow-md px-5 py-3 rounded-[20px] flex items-center gap-3 shadow-none md:shadow-lg">
-                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">Your Personalised
-                        task List</span>
-                </div>
-                <div
-                    class="bg-transparent md:bg-(--blur-bg-color) box-shadow-md backdrop-blur-sm px-1.5 py-1 rounded-full flex gap-0 md:gap-4 items-center z-999">
-                    <button id="close-todo"
-                        class="bg-transparent md:bg-(--bg-secondary-color) px-4 py-2 rounded-full flex items-center gap-3 shadow-none md:shadow-lg cursor-pointer">
-                        <i class="ri-close-line text-xl md:text-2xl text-(--text-color)"></i>
-                        <span class="hidden md:block text-lg font-bold pr-2">Close</span>
-                    </button>
-                </div>
+                    class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
+                    To-Do List</div>
+                <button id="close-todo"
+                    class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
+                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
+                </button>
             </div>
         </header>
 
-        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col md:flex-row gap-4">
+        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col md:flex-row gap-4 pb-24 md:pb-0">
             <div class="md:sticky top-0 pt-4 pb-4 px-4 md:pt-0 md:pb-8 md:px-8 md:max-w-[500px] mx-auto w-full h-full">
                 <div
                     class="md:max-w-[500px] mx-auto w-full h-full bg-(--bg-secondary-color) rounded-2xl border border-(--border-color) p-4">
@@ -223,7 +212,7 @@
                         <button id="add-todo-btn"
                             class="bg-(--text-color) text-(--bg-color) font-semibold py-2 px-4 rounded-xl h-12 cursor-pointer"
                             type="submit">
-                            Add
+                            Add Task
                         </button>
                     </form>
                 </div>
@@ -278,21 +267,17 @@
         </main>
     </section>
 
-    <section id="planner-section" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
+    <section id="planner-section" class="hidden h-full min-h-screen w-full bg-(--bg-color) pb-24 md:pb-0">
         <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
-            <div class="flex justify-between items-center bg-(--bg-color) md:bg-transparent rounded-[20px] relative">
+            <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
-                    class="bg-(--bg-secondary-color) box-shadow-md px-5 py-3 rounded-[20px] flex items-center gap-3 shadow-none md:shadow-lg">
-                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">Daily Planner</span>
-                </div>
-                <div
-                    class="bg-transparent md:bg-(--blur-bg-color) box-shadow-md backdrop-blur-sm px-1.5 py-1 rounded-full flex gap-0 md:gap-4 items-center z-999">
-                    <button id="close-planner"
-                        class="bg-transparent md:bg-(--bg-secondary-color) px-4 py-2 rounded-full flex items-center gap-3 shadow-none md:shadow-lg cursor-pointer">
-                        <i class="ri-close-line text-xl md:text-2xl text-(--text-color)"></i>
-                        <span class="hidden md:block text-lg font-bold pr-2">Close</span>
-                    </button>
-                </div>
+                    class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
+                    Daily Planner</div>
+                <button id="close-planner"
+                    class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
+                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
+                </button>
             </div>
         </header>
         <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col p-4 md:p-8">
@@ -300,21 +285,17 @@
         </main>
     </section>
 
-    <section id="goals-section" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
+    <section id="goals-section" class="hidden h-full min-h-screen w-full bg-(--bg-color) pb-24 md:pb-0">
         <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
-            <div class="flex justify-between items-center bg-(--bg-color) md:bg-transparent rounded-[20px] relative">
+            <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
-                    class="bg-(--bg-secondarycolor) box-shadow-md px-5 py-3 rounded-[20px] flex items-center gap-3 shadow-none md:shadow-lg">
-                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">Daily Goals</span>
-                </div>
-                <div
-                    class="bg-transparent md:bg-(--blur-bg-color) box-shadow-md backdrop-blur-sm px-1.5 py-1 rounded-full flex gap-0 md:gap-4 items-center z-999">
-                    <button id="close-goals"
-                        class="bg-transparent md:bg-(--bg-secondary-color) px-4 py-2 rounded-full flex items-center gap-3 shadow-none md:shadow-lg cursor-pointer">
-                        <i class="ri-close-line text-xl md:text-2xl text-(--text-color)"></i>
-                        <span class="hidden md:block text-lg font-bold pr-2">Close</span>
-                    </button>
-                </div>
+                    class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
+                    Daily Goals</div>
+                <button id="close-goals"
+                    class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
+                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
+                </button>
             </div>
         </header>
         <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col md:flex-row gap-8 p-4 md:p-8">
@@ -343,19 +324,15 @@
 
     <section id="timer-section" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
         <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
-            <div class="flex justify-between items-center bg-(--bg-color) md:bg-transparent rounded-[20px] relative">
+            <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
-                    class="bg-(--bg-secondary-color) box-shadow-md px-5 py-3 rounded-[20px] flex items-center gap-3 shadow-none md:shadow-lg">
-                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">Pomodoro Timer</span>
-                </div>
-                <div
-                    class="bg-transparent md:bg-(--blur-bg-color) box-shadow-md backdrop-blur-sm px-1.5 py-1 rounded-full flex gap-0 md:gap-4 items-center z-999">
-                    <button id="close-timer"
-                        class="bg-transparent md:bg-(--bg-secondary-color) px-4 py-2 rounded-full flex items-center gap-3 shadow-none md:shadow-lg cursor-pointer">
-                        <i class="ri-close-line text-xl md:text-2xl text-(--text-color)"></i>
-                        <span class="hidden md:block text-lg font-bold pr-2">Close</span>
-                    </button>
-                </div>
+                    class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
+                    Pomodoro Timer</div>
+                <button id="close-timer"
+                    class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
+                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
+                </button>
             </div>
         </header>
         <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col items-center justify-center p-4 md:p-8">
@@ -380,20 +357,15 @@
 
     <section id="quotes-section" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
         <header class="max-w-[2000px] w-full mx-auto p-4 md:p-8">
-            <div class="flex justify-between items-center bg-(--bg-color) md:bg-transparent rounded-[20px] relative">
+            <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
-                    class="bg-(--bg-secondary-color) box-shadow-md px-5 py-3 rounded-[20px] flex items-center gap-3 shadow-none md:shadow-lg">
-                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">Motivation
-                        Quotes</span>
-                </div>
-                <div
-                    class="bg-transparent md:bg-(--blur-bg-color) box-shadow-md backdrop-blur-sm px-1.5 py-1 rounded-full flex gap-0 md:gap-4 items-center z-999">
-                    <button id="close-quotes"
-                        class="bg-transparent md:bg-(--bg-secondary-color) px-4 py-2 rounded-full flex items-center gap-3 shadow-none md:shadow-lg cursor-pointer">
-                        <i class="ri-close-line text-xl md:text-2xl text-(--text-color)"></i>
-                        <span class="hidden md:block text-lg font-bold pr-2">Close</span>
-                    </button>
-                </div>
+                    class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
+                    Motivation Quotes</div>
+                <button id="close-quotes"
+                    class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
+                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
+                </button>
             </div>
         </header>
         <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col items-center justify-center p-4 md:p-8">
@@ -413,7 +385,7 @@
 
 
     <button id="theme-toggle"
-        class="fixed right-5 md:right-auto md:left-10 bottom-10 bg-[#E6431F] h-14 w-14 hover:w-fit px-4 py-2 rounded-[16px] flex justify-center items-center gap-3 shadow-none md:shadow-lg group transition-width duration-300 ease z-99999 cursor-pointer">
+        class="fixed right-5 md:right-auto md:left-10 bottom-10 bg-(--accent-color) h-14 w-14 hover:w-fit px-4 py-2 rounded-[16px] flex justify-center items-center gap-3 shadow-none md:shadow-lg group transition-width duration-300 ease z-99999 cursor-pointer">
     </button>
 
     <script src="script.js"></script>
