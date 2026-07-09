@@ -285,6 +285,7 @@ document.querySelector("#timer-reset").addEventListener("click", () => {
 });
 
 let goals = JSON.parse(localStorage.getItem("goals")) || [];
+let goalEditIndex = -1;
 const goalsContainer = document.querySelector("#goals-container");
 const goalProgress = document.querySelector("#goal-progress");
 
@@ -294,16 +295,17 @@ function renderGoals() {
 
     goals.forEach((goal, idx) => {
         if (goal.done) completedCount++;
-        let textStyle = goal.done
-            ? "text-decoration: line-through; color: gray;"
-            : "";
+        let textStyle = goal.done ? "text-decoration: line-through; color: gray;" : "";
         let checkedAttr = goal.done ? "checked" : "";
 
         goalsContainer.innerHTML += `
-            <div class='bg-(--bg-secondary-color) rounded-xl border border-(--border-color) p-4 flex gap-3 items-center'>
+            <div class='bg-(--bg-secondary-color) rounded-xl border border-(--border-color) px-4 flex gap-3 items-center group'>
                 <input type='checkbox' class='w-5 h-5 cursor-pointer goal-check-btn' data-index="${idx}" ${checkedAttr} />
-                <span class='text-xl flex-1 font-semibold break-all' style='${textStyle}'>${goal.text}</span>
-                <button class='bg-red-500 text-white w-8 h-8 rounded-lg cursor-pointer goal-del-btn' data-index="${idx}">X</button>
+                <span class='text-xl flex-1 font-semibold break-all py-4' style='${textStyle}'>${goal.text}</span>
+                <div class='flex gap-2'>
+                    <button class='md:opacity-0 group-hover:opacity-100 transition-all duration-300 ease flex w-7 h-7 rounded-lg hover:bg-[#2563eb] text-[#2563eb] hover:text-[#dbeafe] justify-center items-center font-bold cursor-pointer goal-edit-btn' data-index="${idx}"><i class="ri-edit-2-line"></i></button>
+                    <button class='md:opacity-0 group-hover:opacity-100 transition-all duration-300 ease flex w-7 h-7 rounded-lg hover:bg-red-500 text-red-500 hover:text-[#fee2e2] justify-center items-center font-bold cursor-pointer goal-del-btn' data-index="${idx}"><i class="ri-delete-bin-line"></i></button>
+                </div>
             </div>
         `;
     });
@@ -312,14 +314,20 @@ function renderGoals() {
 }
 
 goalsContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("goal-check-btn")) {
-        let idx = e.target.dataset.index;
+    if (e.target.closest(".goal-check-btn")) {
+        let idx = e.target.closest(".goal-check-btn").dataset.index;
         goals[idx].done = !goals[idx].done;
         localStorage.setItem("goals", JSON.stringify(goals));
         renderGoals();
     }
-    if (e.target.classList.contains("goal-del-btn")) {
-        let idx = e.target.dataset.index;
+    if (e.target.closest(".goal-edit-btn")) {
+        goalEditIndex = e.target.closest(".goal-edit-btn").dataset.index;
+        document.querySelector("#goal-input").value = goals[goalEditIndex].text;
+        document.querySelector("#add-goal-btn").textContent = "Update Goal";
+        document.querySelector("#goals-section h3").textContent = "Update Goal";
+    }
+    if (e.target.closest(".goal-del-btn")) {
+        let idx = e.target.closest(".goal-del-btn").dataset.index;
         goals.splice(idx, 1);
         localStorage.setItem("goals", JSON.stringify(goals));
         renderGoals();
@@ -329,7 +337,14 @@ goalsContainer.addEventListener("click", (e) => {
 document.querySelector("#add-goal-btn").addEventListener("click", () => {
     const goalInput = document.querySelector("#goal-input");
     if (goalInput.value.trim() !== "") {
-        goals.push({ text: goalInput.value, done: false });
+        if (goalEditIndex === -1) {
+            goals.push({ text: goalInput.value, done: false });
+        } else {
+            goals[goalEditIndex].text = goalInput.value;
+            goalEditIndex = -1;
+            document.querySelector("#add-goal-btn").textContent = "Add Goal";
+            document.querySelector("#goals-section h3").textContent = "Add Goal";
+        }
         localStorage.setItem("goals", JSON.stringify(goals));
         goalInput.value = "";
         renderGoals();
@@ -354,9 +369,10 @@ function renderPlanner() {
     plannerContainer.innerHTML = "";
     plannerSlots.forEach((slot, idx) => {
         plannerContainer.innerHTML += `
-            <div class='flex gap-4 items-center bg-(--bg-secondary-color) rounded-xl border border-(--border-color) p-4'>
-                <div class='w-24 font-bold text-lg'>${slot.time}</div>
-                <input type='text' data-index="${idx}" class='planner-input flex-1 bg-(--bg-color) border border-(--border-color) rounded-lg p-3 text-(--text-color)' value='${slot.text}' placeholder='Plan something...' />
+            <div class='flex gap-0 md:gap-4 items-center bg-(--bg-secondary-color) rounded-xl border border-(--border-color) px-4 py-3 group'>
+                <div class='w-auto font-bold text-lg'>${slot.time}</div>
+                <input type='text' data-index="${idx}" class='planner-input w-full md:flex-1 bg-(--bg-color) border border-(--border-color) rounded-lg p-3 text-(--text-color)' value='${slot.text}' placeholder='Plan something...' />
+                <button class='md:opacity-0 group-hover:opacity-100 transition-all duration-300 ease flex w-7 h-7 ml-4 rounded-lg hover:bg-red-500 text-red-500 hover:text-[#fee2e2] justify-center items-center font-bold cursor-pointer planner-del-btn' data-index="${idx}"><i class="fa-solid fa-trash-can"></i></button>
             </div>
         `;
     });
@@ -368,6 +384,21 @@ plannerContainer.addEventListener("change", (e) => {
         plannerSlots[idx].text = e.target.value;
         localStorage.setItem("planner", JSON.stringify(plannerSlots));
     }
+});
+
+plannerContainer.addEventListener("click", (e) => {
+    if (e.target.closest(".planner-del-btn")) {
+        let idx = e.target.closest(".planner-del-btn").dataset.index;
+        plannerSlots[idx].text = "";
+        localStorage.setItem("planner", JSON.stringify(plannerSlots));
+        renderPlanner();
+    }
+});
+
+document.querySelector("#reset-planner-btn").addEventListener("click", () => {
+    plannerSlots.forEach(slot => slot.text = "");
+    localStorage.setItem("planner", JSON.stringify(plannerSlots));
+    renderPlanner();
 });
 
 renderPlanner();
@@ -430,7 +461,7 @@ function renderTodos() {
                 </div>
                 <div class='flex flex-col gap-2 pt-3'>
                     <button class='md:opacity-0 group-hover:opacity-100 transition-all duration-300 ease flex w-7 h-7 rounded-lg hover:bg-[#2563eb] text-[#2563eb] hover:text-[#dbeafe] justify-center items-center font-bold cursor-pointer todo-edit-btn' data-index="${i}"><i class="ri-edit-2-line"></i></button>
-                    <button class='md:opacity-0 group-hover:opacity-100 transition-all duration-300 ease flex w-7 h-7 rounded-lg hover:bg-red-500 text-red-500 hover:text-[#fee2e2] justify-center items-center font-bold cursor-pointer todo-del-btn' data-index="${i}"><i class="ri-delete-bin-line"></i></button>
+                    <button class='md:opacity-0 group-hover:opacity-100 transition-all duration-300 ease flex w-7 h-7 rounded-lg hover:bg-red-500 text-red-500 hover:text-[#fee2e2] justify-center items-center font-bold cursor-pointer todo-del-btn' data-index="${i}"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             </div>
         `;
@@ -443,23 +474,22 @@ function renderTodos() {
 }
 
 taskContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("todo-check-btn")) {
-        let idx = e.target.dataset.index;
+    if (e.target.closest(".todo-check-btn")) {
+        let idx = e.target.closest(".todo-check-btn").dataset.index;
         todos[idx].done = !todos[idx].done;
         localStorage.setItem("todos", JSON.stringify(todos));
         renderTodos();
     }
-    if (e.target.classList.contains("todo-edit-btn")) {
-        editIndex = e.target.dataset.index;
+    if (e.target.closest(".todo-edit-btn")) {
+        editIndex = e.target.closest(".todo-edit-btn").dataset.index;
         document.querySelector("#todo-title").value = todos[editIndex].title;
         document.querySelector("#todo-desc").value = todos[editIndex].desc;
-        document.querySelector("#todo-important").checked =
-            todos[editIndex].important;
+        document.querySelector("#todo-important").checked = todos[editIndex].important;
         document.querySelector("#add-todo-btn").textContent = "Update Task";
         document.querySelector("#todo-list h3").textContent = "Update Task";
     }
-    if (e.target.classList.contains("todo-del-btn")) {
-        let idx = e.target.dataset.index;
+    if (e.target.closest(".todo-del-btn")) {
+        let idx = e.target.closest(".todo-del-btn").dataset.index;
         todos.splice(idx, 1);
         localStorage.setItem("todos", JSON.stringify(todos));
         renderTodos();

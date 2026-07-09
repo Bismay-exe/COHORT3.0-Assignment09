@@ -21,7 +21,8 @@
     <section id="dashboard"
         class="relative w-full h-full md:h-[calc(100dvh-4px)] bg-(--text-color) flex flex-col md:flex-row gap-6 p-3">
         <video id="bg-video" autoplay loop muted playsinline
-            class="fixed top-0 left-0 w-screen h-screen object-cover z-0"></video>
+            class="fixed top-0 left-0 w-screen h-screen object-cover z-0">
+        </video>
         <div
             class="sticky md:relative top-4 md:flex-1 flex flex-col justify-between h-full pt-2 pb-4 pl-3 md:pl-4 pr-3 md:pr-0">
             <div class="flex justify-between items-center bg-(--bg-color) md:bg-transparent rounded-[20px] relative">
@@ -36,8 +37,7 @@
                             d="M19 4h-1v3a1 1 0 0 1-2 0V4H8v3a1 1 0 0 1-2 0V4H5a3 3 0 0 0-3 3v3h20V7a3 3 0 0 0-3-3" />
                     </svg>
 
-                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight">Productivity <br
-                            class="md:hidden" />Dashboard</span>
+                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight">Productivity <br class="md:hidden" />Dashboard</span>
                 </div>
 
                 <a href="https://github.com/Bismay-exe/COHORT3.0-Assignment09" target="_blank" rel="noopener noreferrer"
@@ -188,7 +188,7 @@
             </div>
         </header>
 
-        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col md:flex-row gap-4 pb-24 md:pb-0">
+        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col md:flex-row gap-4 pb-20 md:pb-0">
             <div class="md:sticky top-30 pt-4 pb-4 px-4 md:pt-0 md:pb-8 md:px-8 md:max-w-[500px] mx-auto w-full h-full">
                 <div
                     class="md:max-w-[500px] mx-auto w-full h-full bg-(--bg-secondary-color) rounded-2xl border border-(--border-color) p-4">
@@ -272,19 +272,26 @@
         </main>
     </section>
 
-    <section id="planner-section" class="hidden h-full min-h-screen w-full bg-(--bg-color) pb-24 md:pb-0">
+    <section id="planner-section" class="hidden h-full min-h-screen w-full bg-(--bg-color) pb-20 md:pb-0">
         <header class="sticky top-0 max-w-[2000px] w-full mx-auto bg-linear-[to_bottom,var(--bg-color),transparent] p-4 md:p-8">
             <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
                     class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
                     Daily Planner
                 </div>
-                <button id="close-planner"
-                    class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
-                    <i
-                        class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
-                    <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
-                </button>
+                <div class="flex items-center gap-3">
+                    <button id="reset-planner-btn"
+                        class="bg-(--bg-secondary-color) border border-(--border-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
+                        <i class="ri-refresh-line text-xl md:text-2xl text-(--text-color)"></i>
+                        <span class="hidden md:block text-(--text-color) text-lg font-bold pr-2">Reset All</span>
+                    </button>
+                    <button id="close-planner"
+                        class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
+                        <i
+                            class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                        <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
+                    </button>
+                </div>
             </div>
         </header>
         <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col p-4 md:p-8">
@@ -292,7 +299,7 @@
         </main>
     </section>
 
-    <section id="goals-section" class="hidden h-full min-h-screen w-full bg-(--bg-color) pb-24 md:pb-0">
+    <section id="goals-section" class="hidden h-full min-h-screen w-full bg-(--bg-color) pb-20 md:pb-0">
         <header class="sticky top-0 max-w-[2000px] w-full mx-auto bg-linear-[to_bottom,var(--bg-color),transparent] p-4 md:p-8">
             <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
@@ -344,27 +351,30 @@
                 </button>
             </div>
         </header>
-        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col items-center justify-center p-4 md:p-8">
+        <main class="max-w-[2000px] mx-auto w-full h-[calc(100dvh-14rem)] flex flex-col items-center justify-center p-4 md:p-8">
             <h2 id="timer-label" class="text-3xl font-bold mb-4">Work Session</h2>
-            <div class="text-[8rem] font-bold mb-8" id="timer-display">25:00</div>
+            <div class="text-[clamp(6rem,5.17rem+3.54vw,9rem)] font-bold mb-8" id="timer-display">25:00</div>
             <div class="flex gap-4">
                 <button id="timer-start"
-                    class="bg-green-500 text-white font-semibold py-3 px-8 rounded-xl text-xl cursor-pointer">
-                    Start
+                    class="bg-green-500 text-white font-semibold flex items-center justify-center gap-3 py-3 px-8 rounded-xl text-xl cursor-pointer">
+                    <div class="md:hidden"><i class="fa-solid fa-play"></i></div>
+                    <span class="hidden md:block">Start</span>
                 </button>
                 <button id="timer-pause"
-                    class="bg-yellow-500 text-white font-semibold py-3 px-8 rounded-xl text-xl cursor-pointer">
-                    Pause
+                    class="bg-yellow-500 text-white font-semibold flex items-center justify-center gap-3 py-3 px-8 rounded-xl text-xl cursor-pointer">
+                    <div class="md:hidden"><i class="fa-solid fa-pause"></i></div>
+                    <span class="hidden md:block">Pause</span>
                 </button>
                 <button id="timer-reset"
-                    class="bg-red-500 text-white font-semibold py-3 px-8 rounded-xl text-xl cursor-pointer">
-                    Reset
+                    class="bg-red-500 text-white font-semibold flex items-center justify-center gap-3 py-3 px-8 rounded-xl text-xl cursor-pointer">
+                    <div class="md:hidden"><i class="fa-solid fa-arrow-rotate-left"></i></div>
+                    <span class="hidden md:block">Reset</span>
                 </button>
             </div>
         </main>
     </section>
 
-    <section id="quotes-section" class="hidden h-full min-h-screen w-full bg-(--bg-color)">
+    <section id="quotes-section" class="hidden h-full min-h-screen w-full bg-(--bg-color) pb-20">
         <header class="sticky top-0 max-w-[2000px] w-full mx-auto bg-linear-[to_bottom,var(--bg-color),transparent] p-4 md:p-8">
             <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
@@ -379,9 +389,9 @@
                 </button>
             </div>
         </header>
-        <main class="max-w-[2000px] mx-auto w-full h-full flex flex-col items-center justify-center p-4 md:p-8">
+        <main class="max-w-[2000px] mx-auto w-full min-h-[calc(100dvh-14rem)] flex flex-col items-center justify-center  p-4 md:p-8">
             <div
-                class="max-w-3xl text-center bg-(--bg-secondary-color) p-12 rounded-3xl border border-(--border-color)">
+                class="max-w-3xl text-center bg-(--bg-secondary-color) p-8 md:p-12 rounded-3xl border border-(--border-color)">
                 <p id="quote-text" class="text-4xl font-bold mb-6 italic">
                     "Loading quote..."
                 </p>
@@ -395,7 +405,7 @@
     </section>
 
     <button id="theme-toggle"
-        class="fixed right-5 md:right-auto md:left-10 bottom-10 bg-(--accent-color) h-14 w-14 hover:w-fit px-4 py-2 rounded-[16px] flex justify-center items-center gap-3 shadow-none md:shadow-lg group transition-width duration-300 ease z-99999 cursor-pointer">
+        class="fixed right-5 md:right-auto md:left-10 bottom-5 md:bottom-10 bg-(--accent-color) h-14 w-14 hover:w-fit px-4 py-2 rounded-[16px] flex justify-center items-center gap-3 shadow-none md:shadow-lg group transition-width duration-300 ease z-99999 cursor-pointer">
     </button>
 
     <script src="script.js"></script>
