@@ -18,9 +18,12 @@
 </head>
 
 <body class="h-full w-screen">
-    <section id="dashboard" class="relative w-full h-full md:h-[calc(100dvh-4px)] bg-(--text-color) flex flex-col md:flex-row gap-6 p-3">
-        <video id="bg-video" autoplay loop muted playsinline class="fixed top-0 left-0 w-screen h-screen object-cover z-0"></video>
-        <div class="sticky md:relative top-4 md:flex-1 flex flex-col justify-between h-full pt-2 pb-4 pl-3 md:pl-4 pr-3 md:pr-0">
+    <section id="dashboard"
+        class="relative w-full h-full md:h-[calc(100dvh-4px)] bg-(--text-color) flex flex-col md:flex-row gap-6 p-3">
+        <video id="bg-video" autoplay loop muted playsinline
+            class="fixed top-0 left-0 w-screen h-screen object-cover z-0"></video>
+        <div
+            class="sticky md:relative top-4 md:flex-1 flex flex-col justify-between h-full pt-2 pb-4 pl-3 md:pl-4 pr-3 md:pr-0">
             <div class="flex justify-between items-center bg-(--bg-color) md:bg-transparent rounded-[20px] relative">
                 <div
                     class="bg-(--bg-color) box-shadow-md px-5 py-3 rounded-[16px] flex items-center gap-3 shadow-none md:shadow-lg">
@@ -33,11 +36,11 @@
                             d="M19 4h-1v3a1 1 0 0 1-2 0V4H8v3a1 1 0 0 1-2 0V4H5a3 3 0 0 0-3 3v3h20V7a3 3 0 0 0-3-3" />
                     </svg>
 
-                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight">Productivity <br class="md:hidden" />Dashboard</span>
+                    <span class="text-xl md:text-2xl font-bold leading-tight tracking-tight">Productivity <br
+                            class="md:hidden" />Dashboard</span>
                 </div>
 
-                <a href="https://github.com/Bismay-exe/COHORT3.0-Assignment09" target="_blank"
-                    rel="noopener noreferrer"
+                <a href="https://github.com/Bismay-exe/COHORT3.0-Assignment09" target="_blank" rel="noopener noreferrer"
                     class="flex justify-center items-center gap-2 bg-(--bg-color) h-14 px-6 py-2 rounded-[16px] box-shadow-md z-99 cursor-pointer">
                     <svg class="text-(--text-color)" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                         viewBox="0 0 24 24">
@@ -54,14 +57,14 @@
                             </path>
                         </g>
                     </svg>
+
                     <span class="hidden md:block text-lg font-bold pr-2">Github</span>
                 </a>
             </div>
 
             <div class="flex flex-wrap justify-between md:items-center gap-12 pt-12 md:pt-0 pb-12 md:pb-0">
                 <div class="text-(--bg-color)">
-                    <p id="current-date" class="text-3xl font-bold mb-8 tracking-wide text-shadow-sm">
-                    </p>
+                    <p id="current-date" class="text-3xl font-bold mb-8 tracking-wide text-shadow-sm"></p>
                     <h1 id="current-time"
                         class="text-[clamp(3rem,2.17rem+4.17vw,6.5rem)] leading-[1.05] font-extrabold tracking-tight text-shadow-lg">
                     </h1>
@@ -174,10 +177,12 @@
             <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
                     class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
-                    To-Do List</div>
+                    To-Do List
+                </div>
                 <button id="close-todo"
                     class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
-                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <i
+                        class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
                     <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
                 </button>
             </div>
@@ -205,7 +210,7 @@
                         </div>
                         <label class="flex items-center gap-3 text-slate-800 font-medium cursor-pointer">
                             <input type="checkbox" id="todo-important"
-                                class="w-full h-5 rounded-md border border-slate-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500/20 accent-indigo-600 transition-all cursor-pointer" />
+                                class="w-5 h-5 rounded-md border border-slate-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500/20 accent-indigo-600 transition-all cursor-pointer" />
                             <span class="text-(--text-color)">Mark as Important</span>
                         </label>
 
@@ -221,7 +226,7 @@
             <div class="w-full h-full flex flex-col pb-4 md:pb-8">
                 <div class="header flex justify-between items-center gap-3 pl-4 md:pl-0 pr-4 md:pr-8 py-2">
                     <h1 class="font-extrabold text-4xl">All Tasks</h1>
-                    <button id="clearall-btn" class="btn red-btn">
+                    <button id="clearall-btn" class="text-[#ff6363] hover:text-[#ef4444] hover:sbg-[#ff0000]/20 rounded-lg py-2 px-4 font-bold">
                         <i class="ri-delete-bin-6-line"></i> Clear All
                     </button>
                 </div>
@@ -272,10 +277,12 @@
             <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
                     class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
-                    Daily Planner</div>
+                    Daily Planner
+                </div>
                 <button id="close-planner"
                     class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
-                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <i
+                        class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
                     <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
                 </button>
             </div>
@@ -290,10 +297,12 @@
             <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
                     class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
-                    Daily Goals</div>
+                    Daily Goals
+                </div>
                 <button id="close-goals"
                     class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
-                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <i
+                        class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
                     <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
                 </button>
             </div>
@@ -315,9 +324,7 @@
                 <h2 class="text-2xl font-bold mb-4">
                     Progress: <span id="goal-progress">0/0</span>
                 </h2>
-                <div id="goals-container" class="flex flex-col gap-2">
-
-                </div>
+                <div id="goals-container" class="flex flex-col gap-2"></div>
             </div>
         </main>
     </section>
@@ -327,10 +334,12 @@
             <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
                     class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
-                    Pomodoro Timer</div>
+                    Pomodoro Timer
+                </div>
                 <button id="close-timer"
                     class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
-                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <i
+                        class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
                     <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
                 </button>
             </div>
@@ -360,10 +369,12 @@
             <div class="flex justify-between items-center rounded-[20px] relative">
                 <div
                     class="bg-(--accent-color) px-5 py-3 rounded-[16px] flex items-center gap-3 text-(--bg-color) text-xl md:text-2xl font-bold leading-tight tracking-tight w-fit">
-                    Motivation Quotes</div>
+                    Motivation Quotes
+                </div>
                 <button id="close-quotes"
                     class="bg-(--text-color) h-12 md:h-14 px-4 rounded-[16px] flex gap-0 md:gap-3 items-center group cursor-pointer z-999">
-                    <i class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
+                    <i
+                        class="ri-close-line text-xl md:text-2xl text-(--bg-color) group-hover:rotate-180 transition-transform duration-500 ease-in-out"></i>
                     <span class="hidden md:block text-(--bg-color) text-lg font-bold pr-2">Close</span>
                 </button>
             </div>
@@ -382,7 +393,6 @@
             </div>
         </main>
     </section>
-
 
     <button id="theme-toggle"
         class="fixed right-5 md:right-auto md:left-10 bottom-10 bg-(--accent-color) h-14 w-14 hover:w-fit px-4 py-2 rounded-[16px] flex justify-center items-center gap-3 shadow-none md:shadow-lg group transition-width duration-300 ease z-99999 cursor-pointer">

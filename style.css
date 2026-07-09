@@ -148,6 +148,10 @@ button {
     text-shadow: 0px 0px 20px var(--text-shadow-color);
 }
 
+.red-text-shadow:hover {
+    box-shadow: 0px 0px 40px #ff6363;
+}
+
 .box-shadow {
     box-shadow: 0px 0px 30px var(--box-shadow-color);
 }
@@ -161,3 +165,6 @@ button {
         box-shadow: none;
     }
 }
+
+
+

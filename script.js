@@ -58,14 +58,14 @@ document.documentElement.setAttribute("data-theme", currentTheme);
 function updateThemeButton(theme) {
     if (theme === "dark") {
         themeToggle.innerHTML = `
-            <svg class="text-(--bg-color)" width="22" height="22" viewBox="0 0 24 24" fill="currentcolor" stroke="currentcolor" stroke-width="2">
+            <svg class="text-(--bg-color) group-hover:rotate-360 transition-transform duration-1000 ease-in-out" width="22" height="22" viewBox="0 0 24 24" fill="currentcolor" stroke="currentcolor" stroke-width="2">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
             <span class="hidden md:group-hover:block text-(--bg-color) text-lg font-bold pr-2">Dark</span>
         `;
     } else {
         themeToggle.innerHTML = `
-            <svg class="text-(--bg-color)" width="22" height="22" viewBox="0 0 24 24" fill="currentcolor" stroke="currentcolor" stroke-width="2">
+            <svg class="text-(--bg-color) group-hover:rotate-270 transition-transform duration-[1200ms] ease-in-out" width="22" height="22" viewBox="0 0 24 24" fill="currentcolor" stroke="currentcolor" stroke-width="2">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -420,17 +420,17 @@ function renderTodos() {
                 : "";
 
         taskContainer.innerHTML += `
-            <div class='w-full shrink-0 bg-(--bg-secondary-color) rounded-2xl border border-(--border-color) p-4 flex gap-3'>
-                <div class='w-6 flex justify-center items-start mt-1'>
+            <div class='w-full shrink-0 bg-(--bg-secondary-color) rounded-2xl border border-(--border-color) px-4 flex gap-3 group'>
+                <div class='w-6 flex justify-center items-start py-4 mt-1'>
                     <input type='checkbox' class='w-5 h-5 cursor-pointer todo-check-btn' data-index="${i}" ${checkedAttr} />
                 </div>
-                <div class='w-full h-full'>
+                <div class='w-full h-full py-4'>
                     <h3 class='text-(--text-color) font-bold text-xl break-all' style='${textStyle}'>${titleHtml}</h3>
                     ${descHtml}
                 </div>
-                <div class='flex flex-col gap-2'>
-                    <button class='w-7 h-7 rounded bg-blue-500 text-white flex justify-center items-center font-bold cursor-pointer todo-edit-btn' data-index="${i}">✎</button>
-                    <button class='w-7 h-7 rounded bg-red-500 text-white flex justify-center items-center font-bold cursor-pointer todo-del-btn' data-index="${i}">X</button>
+                <div class='flex flex-col gap-2 pt-3'>
+                    <button class='md:opacity-0 group-hover:opacity-100 transition-all duration-300 ease flex w-7 h-7 rounded-lg hover:bg-[#2563eb] text-[#2563eb] hover:text-[#dbeafe] justify-center items-center font-bold cursor-pointer todo-edit-btn' data-index="${i}"><i class="ri-edit-2-line"></i></button>
+                    <button class='md:opacity-0 group-hover:opacity-100 transition-all duration-300 ease flex w-7 h-7 rounded-lg hover:bg-red-500 text-red-500 hover:text-[#fee2e2] justify-center items-center font-bold cursor-pointer todo-del-btn' data-index="${i}"><i class="ri-delete-bin-line"></i></button>
                 </div>
             </div>
         `;
